@@ -1,0 +1,36 @@
+{"varasto":[
+    {
+        "id":1,
+        "nimi":"Maastokenkä",
+        "img":"img/kengät/kenkä1.jpg",
+        "koot": [{
+            "43": 2,
+             "44": 1,
+             "45": 2,
+             "47": 2}],
+
+        "luokka": "kenkä"
+    },
+    {
+        "id":2,
+        "nimi":"Niken lenkkari",
+        "img":"img/kengät/kenkä2.jpg",
+        "koot": [{
+            "42": 2,
+             "44": 1,
+             "45": 2,
+             "46": 1}],
+        "luokka": "kenkä"
+    },
+    {
+        "id":3,
+        "nimi":"painonnosto kengät",
+        "img":"img/kengät/kenkä3.jpg",
+        "koot": [{
+             "44": 1,
+             "45": 2,
+             "46": 1}],
+        "luokka": "kenkä"
+    }
+
+]  }
