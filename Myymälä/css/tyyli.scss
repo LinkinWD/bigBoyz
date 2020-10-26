@@ -1,0 +1,139 @@
+$light-green: #d5ddbc;
+$light-brown: #937b63;
+$med-green: #b6c197;
+$dark-green: #8a9b68;
+$dark-brown: #443c32;
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background: $light-green;
+	font-family: 'Roboto', sans-serif;
+	color: $dark-brown;
+}
+.navbar {
+	background: $med-green;
+	img {
+		width: 50%;
+	}
+	.nav-icon {
+		font-size: 2rem;
+	}
+	.cart-btn {
+		position: relative;
+		cursor: pointer;
+	}
+	.cart-items {
+		position: absolute;
+		top: -8px;
+		right: -8px;
+		background: $dark-green;
+		padding: 0 5px;
+		border-radius: 30%;
+		color: $light-brown;
+	}
+}
+
+/* navbar loppuu */
+
+/* tuotteet alkaa*/
+.products {
+}
+img {
+	width: 100%;
+	min-height: 8rem;
+}
+/*ostoskori */
+.cart-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	transition: 0.5s all;
+
+	background: rgba(182, 193, 151, 0.5);
+	z-index: 2;
+	visibility: hidden;
+}
+.cart {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+	z-index: 3;
+	background: $dark-green;
+	padding: 1.5rem;
+	transition: 0.5s all;
+	transform: translateX(100%);
+}
+.showCart {
+	transform: translateX(0);
+}
+.transparentBcg {
+	visibility: visible;
+}
+@media screen and (min-width: 768px) {
+	.cart {
+		width: 30vw;
+		min-width: 450px;
+	}
+}
+
+.close-cart {
+	font-size: 1.7rem;
+	cursor: pointer;
+}
+.cart h2 {
+	text-transform: capitalize;
+	text-align: center;
+	letter-spacing: var(--mainSpacing);
+	margin-bottom: 2rem;
+}
+/*---------- Cart Item -------------------- */
+.cart-item {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto 1fr auto;
+	grid-column-gap: 1.5rem;
+	margin: 1.5rem 0;
+}
+.cart-item img {
+	width: 75px;
+	height: 75px;
+}
+.cart-item h4 {
+	font-size: 0.85rem;
+	text-transform: capitalize;
+}
+.cart-item h5 {
+	margin: 0.5rem 0;
+}
+.item-amount {
+	text-align: center;
+}
+.remove-item {
+	color: grey;
+	cursor: pointer;
+}
+.fa-chevron-up,
+.fa-chevron-down {
+	color: $dark-brown;
+	cursor: pointer;
+}
+/*---------- End of Cart Item -------------------- */
+
+.cart-footer {
+	margin-top: 2rem;
+
+	text-align: center;
+}
+.cart-footer h3 {
+	text-transform: capitalize;
+	margin-bottom: 1rem;
+}
+
+/* --------------- End of Cart ---------------- */

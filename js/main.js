@@ -5,11 +5,9 @@ const client = contentful.createClient({
     accessToken: "SqoNU9BCfbylzjSw6yLe1iNqYZAoHMyQKOkQJxCejic"
   });
 
-  
-   client.getEntries()
+  client.getEntries()
 .then((response) => console.log(response.items))
 .catch(console.error)
-
 // avaa lähetä viesti ikkuna
 $('.tilaukset .btn1').on('click', function() {
     $('.form1').toggleClass('hidden')
