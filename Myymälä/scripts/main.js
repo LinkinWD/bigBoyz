@@ -12,7 +12,8 @@ const productsDOM = document.querySelector('.products-center')
 
 //ostoskori
 let cart = []
-
+//buttons
+let buttonsDOM = []
 
 // tässä luokassa haetaan tuotteet
 class Products {
@@ -27,7 +28,7 @@ class Products {
         let products = data.items
         // kopioideen eli map ja rakennellaan
         products = products.map(item =>{
-            //otetaan fieldit
+            //otetaan fieldit tuotteista
             const {title,price} = item.fields;
             //otetaan id
             const {id} = item.sys
@@ -75,6 +76,8 @@ getBagButtons(){
     //spread operator, muuttaa arrayksi, ei tule node listiä
     const buttons = [...document.querySelectorAll('.bag-btn')];
     //jokainen nappi käydään läpi ja koska ne ovat esineiden sisällä, niihin liitetään sen esineen data-id
+    //tätä tarvitaan että myöhemmin löydetään tietty nappi(huomaa buttonsDOM)
+    buttonsDOM = buttons;
     buttons.forEach(button => {
         let id = button.dataset.id;
         //katsotaan ostoskorista onko samaa id:tä paikalla
@@ -83,17 +86,68 @@ getBagButtons(){
         if(inCart){
             button.innerText = 'ostoskorissa'
             button.disabled = true
-        } else {
-            //muuten
+        } 
+            //muutetaan teksti
             button.addEventListener('click', (event)=>{
-                console.log(event)
+                event.target.innerText = 'Ostoskorissa';
+                event.target.disabled = true
+                //haetaan esine (product from products) ja lisätään siihen määrä(amount). haemme esineen varastosta
+                let cartItem = {...Storage.getProduct(id), amount:1}
+               
+                //lisätään ostoskoriin. lisäämme esineen cart arrayhyn
+                cart = [...cart,cartItem]
+                //tallenetaan local storageen.Methodi etssii arraytä(cart).tallenetaan esina storageen
+                Storage.saveCart(cart)
+                //asetetaan ostoskorin valuet
+                this.setCartValues(cart);
+                //esitetään esine ostoskorissa
+                this.addCartItem(cartItem)
+                //näytetään ostoskori
+                this.showCart()
             })
 
-        }
+        
     })
     
 }
+setCartValues(cart){
+    let tempTotal = 0
+    let itemsTotal = 0
+    cart.map(item => {
+        //hinta total = esineen hinta kerrottuna määrällä ostoskorissa. ja esineet yhteensä
+        tempTotal += item.price * item.amount;
+        itemsTotal += item.amount
+    })
+    //ostoskorin summa kahdella desimaalilla.esineiden määrä ostoskorissa
+    cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
+    cartItems.innerText = itemsTotal;
+   
 }
+//luodaan cart item
+addCartItem(item) {
+    const div = document.createElement('div')
+    div.classList.add('cart-item')
+    div.innerHTML = `<img src=${item.image}>
+    <div>
+       <h4>${item.title}</h4>
+       <h5>€${item.price}</h5>
+       <span class="remove-item" data-id=${item.id}>remove</span>
+    </div>
+    <div>
+      <i class="fas fa-chevron-up" data-id=${item.id}></i>
+      <p class="item-amount">${item.amount}</p>
+      <i class="fas fa-chevron-down" data-id=${item.id}></i>
+    </div>`;
+    //liitetään itemi childina documenttiin
+    cartContent.appendChild(div)
+   
+}
+showCart(){
+    cartOverlay.classList.add('transparentBcg')
+    cartDOM.classList.add('showCart')
+}
+}
+
 // Local storage, tässä tuotteet tallennetaan selaimen omaan muistiin
 class Storage {
     //static method
@@ -101,7 +155,15 @@ class Storage {
         //pitää tallentaa stringinä
         localStorage.setItem("products", JSON.stringify(products))
     }
+    static getProduct(id){
+        //must parse, koska tuote on tallenettu stringinä local storageen
+        let products = JSON.parse(localStorage.getItem('products'));
+        return products.find(product => product.id === id)
 
+    }
+    static saveCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
 }
 
 //odotetaan DOM:in latausta, callback
