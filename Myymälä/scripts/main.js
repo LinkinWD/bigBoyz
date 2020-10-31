@@ -60,7 +60,7 @@ class UI {
                   <img src=${product.image} alt="" class="product-img img-thumbnail">
                   <button class="bag-btn" data-id=${product.id}>
                     <i class="fas fa-shopping-cart"></i>
-                    add to bag
+                    Lisää ostoskoriin
                   </button>
                 </div>
                 <h3>${product.title}</h3>
@@ -146,6 +146,85 @@ showCart(){
     cartOverlay.classList.add('transparentBcg')
     cartDOM.classList.add('showCart')
 }
+setupAPP(){
+    cart = Storage.getCart();
+    this.setCartValues(cart)
+    this.populateCart(cart);
+    cartBtn.addEventListener('click', this.showCart)
+    closeCartBtn.addEventListener('click', this.hideCart)
+}
+
+populateCart(cart){
+    cart.forEach(item => this.addCartItem(item))
+}
+hideCart(){
+    cartOverlay.classList.remove('transparentBcg')
+    cartDOM.classList.remove('showCart')
+}
+cartLogic() {
+    //tyhjennä kori nappi
+    clearCartBtn.addEventListener('click', ()=> {
+        this.clearCart()
+    })
+    // ostoskorin toiminnallisuus(lisää, poista tuotteita...) event bubbling. Laittaa kuuntelijan koko diviin
+    cartContent.addEventListener('click', event => {
+        //jos eventin kohde sisältää luokan, nii...
+        if(event.target.classList.contains('remove-item'))
+        {
+            let removeItem = event.target
+            let id = removeItem.dataset.id
+            cartContent.removeChild(removeItem.parentElement.parentElement)
+            this.removeItem(id)
+
+        }
+        else if(event.target.classList.contains('fa-chevron-up')) {
+            let addAmount = event.target
+            let id = addAmount.dataset.id
+            //etsitään cartista esine, jonka Id on sama
+            let tempItem = cart.find(item => item.id===id)
+            tempItem.amount = tempItem.amount +1
+            Storage.saveCart(cart)
+            this.setCartValues(cart)
+            addAmount.nextElementSibling.innerText = tempItem.amount
+        }
+        else if(event.target.classList.contains('fa-chevron-down')) {
+            let lowerAmount = event.target
+            let id = lowerAmount.dataset.id
+            let tempItem = cart.find(item => item.id===id)
+            tempItem.amount = tempItem.amount -1
+            if(tempItem.amount > 0 ) {
+                    Storage.saveCart(cart)
+                    this.setCartValues(cart)
+                    lowerAmount.previousElementSibling.innerText = tempItem.amount
+            }
+            else {
+                cartContent.removeChild(lowerAmount.parentElement.parentElement)
+                this.removeItem(id)
+            }
+        }
+    })
+}
+clearCart() {
+    let cartItems = cart.map(item => item.id)
+    cartItems.forEach(id => this.removeItem(id))
+    while(cartContent.children.length > 0) {
+        cartContent.removeChild(cartContent.children[0])
+    } 
+    this.hideCart()
+}
+removeItem(id) {
+    cart = cart.filter(item => item.id !== id)
+    this.setCartValues(cart)
+    Storage.saveCart(cart)
+    let button = this.getSingleButton(id)
+    button.disabled = false
+    button.innerHTML = `<i class="fas fa-shopping-cart"></i>Lisää ostoskoriin`
+
+}
+// palauta takaisin se tietty nappi, jossa on sama data id
+getSingleButton(id) {
+    return buttonsDOM.find(button => button.dataset.id === id)
+}
 }
 
 // Local storage, tässä tuotteet tallennetaan selaimen omaan muistiin
@@ -164,13 +243,18 @@ class Storage {
     static saveCart(cart) {
         localStorage.setItem('cart', JSON.stringify(cart))
     }
+    static getCart() {
+        //tarkistetaan onko mitään local storagessa, jos on niin tuodaan se, jos ei palautetaan tyhjä array
+        return localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):[]
+    }
 }
 
 //odotetaan DOM:in latausta, callback
 document.addEventListener('DOMContentLoaded', () => {
     const ui = new UI()
     const products = new Products()
-
+    //set up aplication
+    ui.setupAPP()
     //hae kaikki tuotteet
     products.getProducts().then(products => {ui.displayProducts(products)
     //local strorageen tallennetaan esineet, sopii pieniin määriin esineitä   
@@ -178,6 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
 }).then(() => {
     //nyt käynnistetään funktion, että saadaan 'lisää koriin' napit, niitä ei voinut etsiä alun muuttujissa, koska ne eivät ole dokumentissa, ennen sisällön latautumista.
     ui.getBagButtons();
+    ui.cartLogic()
+
 })
    
 });
