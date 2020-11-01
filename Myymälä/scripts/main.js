@@ -7,7 +7,7 @@ const client = contentful.createClient({
   
 
 // muuttujat
-
+const napit = document.querySelectorAll('.napit')
 const cartBtn = document.querySelector('.cart-btn')
 const closeCartBtn = document.querySelector('.close-cart')
 const clearCartBtn = document.querySelector('.clear-cart')
@@ -45,13 +45,13 @@ class Products {
         // kopioideen eli map ja rakennellaan
         products = products.map(item =>{
             //otetaan fieldit tuotteista
-            const {nimi,hinta} = item.fields;
+            const {nimi,hinta, luokka} = item.fields;
             //otetaan id
             const {id} = item.sys
             //koska vastaus on tää otetaan image täältä
             const image = item.fields.image.fields.file.url;
             //palautetaan puhdas kokonaisuus
-            return {nimi,hinta,id,image}
+            return {nimi,hinta,luokka,id,image}
         })
         // ja palautetaan taas
         return products
@@ -71,7 +71,7 @@ class UI {
         //lisätään arrayhyn
         result +=`
         <!-- yksi esine -->
-        <article class="product">
+        <article class="product ${product.luokka}">
                 <div class="images-container">
                 <h3>${product.nimi}</h3>
                 <img src=${product.image} alt="" class="product-img img-thumbnail">
@@ -282,6 +282,35 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.getBagButtons();
     ui.cartLogic()
 
-})
+}).then(() => {
+    
+    napit.forEach(nappi => {
+        nappi.addEventListener('click', event => {
+            let id = nappi.dataset.id
+            let vaate = document.querySelectorAll('.vaate')
+            let kenkä = document.querySelectorAll('.kenkä')
+            let arti = document.querySelectorAll('article')
+            if(id === 'kengät') {
+                vaate.forEach(event => {
+                    event.style.color = 'red'
+                })
+            } else 
+                if(id === 'vaatteet') {
+                    kenkä.forEach(event => {
+                        event.style.color = 'green'
+                    })
+            } else 
+            if(id === 'kaikki') {
+               arti.forEach(event => {
+                   event.style.color = 'white'
+               })
+
+        }
+            
+        } )
+    })
+    })
+    })
+
    
-});
+

@@ -41,12 +41,12 @@ section.products {
   color: #443c32;
 }
 
-section.products .napit {
+section.products .valikko {
   padding: 0;
   margin: 0;
 }
 
-section.products .napit button {
+section.products .valikko button {
   background: #8a9b68;
   margin: 0;
   border: 2px solid #443c32;
@@ -55,7 +55,7 @@ section.products .napit button {
   border-radius: 5px;
 }
 
-section.products .napit button:focus {
+section.products .valikko button:focus {
   background: #443c32;
   color: #d5ddbc;
 }
@@ -87,6 +87,10 @@ section.products .napit button:focus {
   border-radius: 10px;
   color: #443c32;
   background: #b6c197;
+}
+
+.products .hide {
+  display: none;
 }
 
 /*ostoskori */
