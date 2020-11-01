@@ -1,3 +1,11 @@
+const client = contentful.createClient({
+    // This is the space ID. A space is like a project folder in Contentful terms
+    space: "sqee0b6lmkhy",
+    // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+    accessToken: "SqoNU9BCfbylzjSw6yLe1iNqYZAoHMyQKOkQJxCejic"
+  });
+  
+
 // muuttujat
 
 const cartBtn = document.querySelector('.cart-btn')
@@ -21,11 +29,19 @@ class Products {
     async getProducts(){
     //kokeillaan saada tuotteet ja palautetaan ne, tai errori
         try {   
+
+            let contentful = await client.getEntries({
+                content_type: "varasto"
+            })
+           console.log(contentful)
+            /* .then((response) => console.log(response.items))
+            .catch(console.error)    */
         let result = await fetch('products.json')
         //muutetaan json formaatista 
         let data = await result.json()
-        // products on items.array joka palautetaan
-        let products = data.items
+        // products on items.array joka palautetaan contentfulista
+        let products = contentful.items;
+        console.log(products)
         // kopioideen eli map ja rakennellaan
         products = products.map(item =>{
             //otetaan fieldit tuotteista
@@ -63,8 +79,8 @@ class UI {
                     Lisää ostoskoriin
                   </button>
                 </div>
-                <h3>${product.title}</h3>
-                <h4>${product.price}</h4>
+                <h3>${product.nimi}</h3>
+                <h4>${product.hinta}</h4>
               </article>
               <!-- Esine loppuu-->`
               
