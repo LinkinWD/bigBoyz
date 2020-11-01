@@ -45,13 +45,13 @@ class Products {
         // kopioideen eli map ja rakennellaan
         products = products.map(item =>{
             //otetaan fieldit tuotteista
-            const {title,price} = item.fields;
+            const {nimi,hinta} = item.fields;
             //otetaan id
             const {id} = item.sys
             //koska vastaus on tää otetaan image täältä
             const image = item.fields.image.fields.file.url;
             //palautetaan puhdas kokonaisuus
-            return {title,price,id,image}
+            return {nimi,hinta,id,image}
         })
         // ja palautetaan taas
         return products
@@ -73,14 +73,16 @@ class UI {
         <!-- yksi esine -->
         <article class="product">
                 <div class="images-container">
-                  <img src=${product.image} alt="" class="product-img img-thumbnail">
+                <h3>${product.nimi}</h3>
+                <img src=${product.image} alt="" class="product-img img-thumbnail">
+                <h4>€${product.hinta}</h4>
                   <button class="bag-btn" data-id=${product.id}>
                     <i class="fas fa-shopping-cart"></i>
                     Lisää ostoskoriin
                   </button>
                 </div>
-                <h3>${product.nimi}</h3>
-                <h4>${product.hinta}</h4>
+                
+                
               </article>
               <!-- Esine loppuu-->`
               
@@ -131,7 +133,7 @@ setCartValues(cart){
     let itemsTotal = 0
     cart.map(item => {
         //hinta total = esineen hinta kerrottuna määrällä ostoskorissa. ja esineet yhteensä
-        tempTotal += item.price * item.amount;
+        tempTotal += item.hinta * item.amount;
         itemsTotal += item.amount
     })
     //ostoskorin summa kahdella desimaalilla.esineiden määrä ostoskorissa
@@ -145,8 +147,8 @@ addCartItem(item) {
     div.classList.add('cart-item')
     div.innerHTML = `<img src=${item.image}>
     <div>
-       <h4>${item.title}</h4>
-       <h5>€${item.price}</h5>
+       <h4>${item.nimi}</h4>
+       <h5>€${item.hinta}</h5>
        <span class="remove-item" data-id=${item.id}>remove</span>
     </div>
     <div>

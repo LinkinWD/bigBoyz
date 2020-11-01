@@ -37,9 +37,56 @@ body {
 
 /* navbar loppuu */
 /* tuotteet alkaa*/
+section.products {
+  color: #443c32;
+}
+
+section.products .napit {
+  padding: 0;
+  margin: 0;
+}
+
+section.products .napit button {
+  background: #8a9b68;
+  margin: 0;
+  border: 2px solid #443c32;
+  outline: none;
+  padding: 2px 20px;
+  border-radius: 5px;
+}
+
+section.products .napit button:focus {
+  background: #443c32;
+  color: #d5ddbc;
+}
+
+.products-center {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(260px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+}
+
+.products {
+  margin-bottom: 1rem;
+}
+
 .products img {
-  width: 100%;
+  border: 2px solid black;
+  width: 30%;
   min-height: 8rem;
+}
+
+.products .bag-btn {
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: #443c32;
+  background: #b6c197;
 }
 
 /*ostoskori */
@@ -59,7 +106,7 @@ body {
 .cart {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: scroll;
@@ -68,8 +115,31 @@ body {
   padding: 1.5rem;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.cart .close-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.cart .close-cart i {
+  font-size: 2rem;
+}
+
+.cart .banner-btn {
+  background: #d5ddbc;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
 .showCart {
