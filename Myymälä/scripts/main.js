@@ -50,6 +50,7 @@ class Products {
             const {id} = item.sys
             //koska vastaus on tää otetaan image täältä
             const image = item.fields.image.fields.file.url;
+            
             //palautetaan puhdas kokonaisuus
             return {nimi,hinta,luokka,id,image}
         })
@@ -75,7 +76,7 @@ class UI {
                 <div class="images-container">
                 <h3>${product.nimi}</h3>
                 <img src=${product.image} alt="" class="product-img img-thumbnail">
-                <h4>€${product.hinta}</h4>
+                <h4>€${product.hinta.toFixed(2)}</h4>
                   <button class="bag-btn" data-id=${product.id}>
                     <i class="fas fa-shopping-cart"></i>
                     Lisää ostoskoriin
@@ -137,7 +138,7 @@ setCartValues(cart){
         itemsTotal += item.amount
     })
     //ostoskorin summa kahdella desimaalilla.esineiden määrä ostoskorissa
-    cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
+    cartTotal.innerText = parseFloat(tempTotal).toFixed(2)
     cartItems.innerText = itemsTotal;
    
 }
@@ -148,7 +149,7 @@ addCartItem(item) {
     div.innerHTML = `<img src=${item.image}>
     <div>
        <h4>${item.nimi}</h4>
-       <h5>€${item.hinta}</h5>
+       <h5>€${item.hinta.toFixed(2)}</h5>
        <span class="remove-item" data-id=${item.id}>remove</span>
     </div>
     <div>

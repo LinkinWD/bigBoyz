@@ -190,3 +190,17 @@ section.products {
 }
 
 /* --------------- End of Cart ---------------- */
+footer {
+	color: $dark-brown;
+	background: $med-green;
+	margin: 20px;
+	border-radius: 10px;
+	box-shadow: 0 7px 7px $dark-green;
+	h5 {
+		font-size: clamp(1.5rem, 5vw, 3rem);
+	}
+	p {
+		text-align: left;
+		font-size: clamp(1rem, 2.5vw, 1.5rem);
+	}
+}
