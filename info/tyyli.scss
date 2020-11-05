@@ -1,0 +1,28 @@
+$light-green: #d5ddbc;
+$light-brown: #937b63;
+$med-green: #b6c197;
+$dark-green: #8a9b68;
+$dark-brown: #443c32;
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background: $light-green;
+	font-family: 'Roboto', sans-serif;
+	color: $dark-brown;
+}
+footer {
+	color: $dark-brown;
+	background: $med-green;
+	margin: 20px;
+	border-radius: 10px;
+	box-shadow: 0 7px 7px $dark-green;
+	h5 {
+		font-size: clamp(1.5rem, 5vw, 3rem);
+	}
+	p {
+		text-align: left;
+		font-size: clamp(1rem, 2.5vw, 1.5rem);
+	}
+}
