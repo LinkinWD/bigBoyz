@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.cartLogic()
 
 }).then(() => {
-    
+    // tehdään valikko, että näkyy kaikki tai sitten vaan kengät tai vaatteet. Tämän joutuu tekemään vasta nyt, koska elementit eivät sijaitse samassa paikassa kuin dokumentti vaan ne pitää hakea ensin muualta ja odottaa niiden latautumista.
     napit.forEach(nappi => {
         nappi.addEventListener('click', event => {
             let id = nappi.dataset.id
@@ -292,17 +292,21 @@ document.addEventListener('DOMContentLoaded', () => {
             let arti = document.querySelectorAll('article')
             if(id === 'kengät') {
                 vaate.forEach(event => {
-                    event.style.color = 'red'
+                    event.style.display = 'none'
+                    kenkä.forEach( (e) =>
+                        e.style.display = 'block')
                 })
             } else 
                 if(id === 'vaatteet') {
                     kenkä.forEach(event => {
-                        event.style.color = 'green'
+                        event.style.display = 'none'
+                        vaate.forEach( (e) =>
+                        e.style.display = 'block')
                     })
             } else 
             if(id === 'kaikki') {
                arti.forEach(event => {
-                   event.style.color = 'white'
+                   event.style.display = 'block'
                })
 
         }

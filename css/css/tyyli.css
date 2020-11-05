@@ -1,0 +1,112 @@
+body {
+  background: #d5ddbc;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+  background: #b6c197;
+}
+
+.navbar img {
+  width: 50%;
+}
+
+header {
+  color: #443c32;
+}
+
+header img {
+  width: 100%;
+}
+
+header h4 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-shadow: 0px 5px 5px #937b63;
+}
+
+button.siirry {
+  background: #b6c197;
+  color: #443c32;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+  padding: 15px 0;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  -webkit-box-shadow: 0 7px 7px #8a9b68;
+          box-shadow: 0 7px 7px #8a9b68;
+}
+
+button.siirry:hover {
+  background: #d5ddbc;
+  color: #443c32;
+}
+
+.carousel-item .carousel-caption {
+  color: #d6bd2f;
+  font-weight: 700;
+  text-shadow: 0px 5px 10px #ff1a00;
+}
+
+.carousel-item img {
+  height: 55%;
+  max-width: 55%;
+  margin: auto;
+}
+
+main img {
+  width: 80%;
+}
+
+main ul {
+  list-style: none;
+}
+
+main ul li label,
+main ul li input {
+  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+}
+
+main ul li .btn {
+  width: 80%;
+  background: #b6c197;
+  border: none;
+  -webkit-box-shadow: 0 7px 7px #8a9b68;
+          box-shadow: 0 7px 7px #8a9b68;
+  color: #443c32;
+}
+
+main ul li .btn:hover {
+  background: #d5ddbc;
+  color: #443c32;
+}
+
+main ul li .btn:focus {
+  background: #443c32;
+  border: none;
+  color: #d5ddbc;
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  color: #443c32;
+  background: #b6c197;
+  margin: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 7px 7px #8a9b68;
+          box-shadow: 0 7px 7px #8a9b68;
+}
+
+footer h5 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+footer p {
+  text-align: left;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+/*# sourceMappingURL=tyyli.css.map */
