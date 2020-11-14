@@ -34,7 +34,7 @@ class Products {
             let contentful = await client.getEntries({
                 content_type: "varasto"
             })
-           console.log(contentful)
+           
             /* .then((response) => console.log(response.items))
             .catch(console.error)    */
         let result = await fetch('products.json')
@@ -317,14 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(() => {
         const modal = document.querySelector('.modal')
         const kuvat = document.querySelectorAll('img')
+        // tässäkohtaa tehdään taas uusi products luokka, eli ikkunatuotteet on jama asia kuin mitä Products luokan alta löytyy
+        const ikkunaTuotteet = new Products;
         kuvat.forEach(kuva => {
             kuva.addEventListener('click', event => {
-                console.log(event.target.parentElement.parentElement)
-                modal.style.display = 'block'
                 let uusiDiv = document.createElement('div')
                 uusiDiv.innerHTML = `
                 <p>joopajooa</p>`
                 modal.appendChild(uusiDiv)
+                ikkunaTuotteet.getProducts().then(() => 
+                {console.log(ikkunaTuotteet)})
+                
             })
         })
     })
