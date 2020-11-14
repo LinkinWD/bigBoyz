@@ -42,7 +42,7 @@ class Products {
         let data = await result.json()
         // products on items.array joka palautetaan contentfulista
         let products = contentful.items;
-        console.log(products)
+        
         // kopioideen eli map ja rakennellaan
         products = products.map(item =>{
             //otetaan fieldit tuotteista
@@ -317,22 +317,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(() => {
         const modal = document.querySelector('.modal')
         const kuvat = document.querySelectorAll('img')
-        // tässäkohtaa tehdään taas uusi products luokka, eli ikkunatuotteet on jama asia kuin mitä Products luokan alta löytyy
-        const ikkunaTuotteet = new Products;
+       
         kuvat.forEach(kuva => {
             kuva.addEventListener('click', event => {
+                
+                let a = event.target.parentElement
+              
+                console.log(a)
+                const koot = document.createElement('p')
+                koot.innerText = 'vittu'
+                const selitys = document.createElement('p')
+                selitys.innerText = 'selitys'
                 let uusiDiv = document.createElement('div')
-                uusiDiv.innerHTML = `
-                <p>joopajooa</p>`
+                uusiDiv.classList.add('modal-item')
+                uusiDiv.innerHTML = `${a.innerHTML}
+                <button class="close-modal">Poistu ikkunasta</button>
+                
+                 `;
+
+                 uusiDiv.insertBefore(koot, uusiDiv.children[2]);
+                 uusiDiv.insertBefore(selitys, uusiDiv.children[3]);
+                 uusiDiv.insertBefore(uusiDiv.children[1], uusiDiv.children[0])
+                console.log(uusiDiv.children)
                 modal.appendChild(uusiDiv)
-                ikkunaTuotteet.getProducts().then(() => 
-                {console.log(ikkunaTuotteet)})
+                modal.style.display = 'block'
+            })
+            })
+               
+                
+                
                 
             })
         })
-    })
-
-    })
+    
 
     
 
