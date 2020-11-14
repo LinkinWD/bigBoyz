@@ -93,13 +93,27 @@ section.products .valikko button:focus {
   display: none;
 }
 
+/* modal */
+.modal {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: #d5ddbc;
+}
+
 /*ostoskori */
 .cart-overlay {
   position: fixed;
   top: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
   background: rgba(182, 193, 151, 0.5);

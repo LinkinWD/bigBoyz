@@ -7,6 +7,7 @@ const client = contentful.createClient({
   
 
 // muuttujat
+
 const napit = document.querySelectorAll('.napit')
 const cartBtn = document.querySelector('.cart-btn')
 const closeCartBtn = document.querySelector('.close-cart')
@@ -69,7 +70,7 @@ class UI {
     let result = '';
     //käydään kaikki tuotteet läpi
     products.forEach(product => {
-        //lisätään arrayhyn
+        //lisätään 
         result +=`
         <!-- yksi esine -->
         <article class="product ${product.luokka}">
@@ -309,13 +310,28 @@ document.addEventListener('DOMContentLoaded', () => {
                arti.forEach(event => {
                    event.style.display = 'block'
                })
-
-        }
-            
+        }            
         } )
     })
+
+    }).then(() => {
+        const modal = document.querySelector('.modal')
+        const kuvat = document.querySelectorAll('img')
+        kuvat.forEach(kuva => {
+            kuva.addEventListener('click', event => {
+                console.log(event.target.parentElement.parentElement)
+                modal.style.display = 'block'
+                let uusiDiv = document.createElement('div')
+                uusiDiv.innerHTML = `
+                <p>joopajooa</p>`
+                modal.appendChild(uusiDiv)
+            })
+        })
     })
+
     })
+
+    
 
    
 
