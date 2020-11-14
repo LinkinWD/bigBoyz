@@ -8,6 +8,23 @@ body {
   color: #443c32;
 }
 
+section {
+  text-align: center;
+}
+
+section h3,
+section h4 {
+  margin-top: 20px;
+}
+
+section iframe {
+  width: 80%;
+  height: 400px;
+  border: 2px solid black;
+  -webkit-box-shadow: 0 0 5px 8px;
+          box-shadow: 0 0 5px 8px;
+}
+
 footer {
   color: #443c32;
   background: #b6c197;
