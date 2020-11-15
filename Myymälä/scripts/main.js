@@ -78,7 +78,13 @@ class UI {
                 <h3>${product.nimi}</h3>
                 <img src=${product.image} alt="" class="product-img img-thumbnail">
                 <h4>€${product.hinta.toFixed(2)}</h4>
-                  <button class="bag-btn" data-id=${product.id}>
+                <label for="koot">Valitse koko:</label>
+                <select name="cars" id="cars">
+                <option value="koko1">koko1</option>
+                <option value="koko2">koko2</option>
+                <option value="koko3">koko3</option>
+                </select><br>
+                <button class="bag-btn" data-id=${product.id}>
                     <i class="fas fa-shopping-cart"></i>
                     Lisää ostoskoriin
                   </button>
@@ -320,14 +326,16 @@ document.addEventListener('DOMContentLoaded', () => {
        
         kuvat.forEach(kuva => {
             kuva.addEventListener('click', event => {
-                
+                modal.innerHTML = ''
                 let a = event.target.parentElement
               
                 console.log(a)
-                const koot = document.createElement('p')
-                koot.innerText = 'vittu'
-                const selitys = document.createElement('p')
-                selitys.innerText = 'selitys'
+                const koot = document.createElement('div')
+                koot.innerHTML = '<h5>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h5> '
+                const selitys = document.createElement('div')
+                selitys.innerHTML = '<h5>Tuotetiedot</h5><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquam deleniti fuga corporis dolor iure. Dolore dolores tenetur sed nobis.</p><h4>Hinta</h4>'
+                let kakkosDiv = document.createElement('div')
+                kakkosDiv.classList.add('modal-kuva')
                 let uusiDiv = document.createElement('div')
                 uusiDiv.classList.add('modal-item')
                 uusiDiv.innerHTML = `${a.innerHTML}
@@ -337,10 +345,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                  uusiDiv.insertBefore(koot, uusiDiv.children[2]);
                  uusiDiv.insertBefore(selitys, uusiDiv.children[3]);
-                 uusiDiv.insertBefore(uusiDiv.children[1], uusiDiv.children[0])
-                console.log(uusiDiv.children)
+                 $(uusiDiv.children[1]).appendTo(kakkosDiv);
+                 console.log(uusiDiv.children)
                 modal.appendChild(uusiDiv)
-                modal.style.display = 'block'
+                modal.appendChild(kakkosDiv)
+                modal.style.transform = 'translateX(0)'
+                const poistu = document.querySelector('.close-modal')
+                
+                poistu.addEventListener('click', ()=> {
+                    modal.style.transform = 'translateX(-100%)'
+                })
             })
             })
                
