@@ -77,20 +77,35 @@ main {
 				border: none;
 				box-shadow: 0 7px 7px $dark-green;
 				color: $dark-brown;
+				margin: 20px;
+				transform: translate(-5%, -5%);
 			}
 			.btn:hover {
 				background: $light-green;
 				color: $dark-brown;
 			}
 			.btn:focus {
-				background: $dark-brown;
-				border: none;
-				color: $light-green;
-				outline: none;
+				box-shadow: none;
+				border: 1px solid $dark-green;
+			}
+
+			textarea,
+			input {
+				background: $dark-green;
 			}
 		}
 	}
 }
+/* .tilaukset {
+	textarea,
+	input {
+		background: $dark-green;
+	}
+	button {
+		margin: 20px;
+		transform: translate(-5%, -5%);
+	}
+} */
 .hidden {
 	display: none;
 }

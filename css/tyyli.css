@@ -80,6 +80,9 @@ main ul li .btn {
   -webkit-box-shadow: 0 7px 7px #8a9b68;
           box-shadow: 0 7px 7px #8a9b68;
   color: #443c32;
+  margin: 20px;
+  -webkit-transform: translate(-5%, -5%);
+          transform: translate(-5%, -5%);
 }
 
 main ul li .btn:hover {
@@ -88,12 +91,26 @@ main ul li .btn:hover {
 }
 
 main ul li .btn:focus {
-  background: #443c32;
-  border: none;
-  color: #d5ddbc;
-  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 1px solid #8a9b68;
 }
 
+main ul li textarea,
+main ul li input {
+  background: #8a9b68;
+}
+
+/* .tilaukset {
+	textarea,
+	input {
+		background: $dark-green;
+	}
+	button {
+		margin: 20px;
+		transform: translate(-5%, -5%);
+	}
+} */
 .hidden {
   display: none;
 }
