@@ -355,6 +355,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 poistu.addEventListener('click', ()=> {
                     modal.style.transform = 'translateX(-100%)'
                 })
+                console.log(uusiDiv.children[7])
+                uusiDiv.children[7].style.display = 'none'
+                uusiDiv.children[4].style.display = 'none'
+                uusiDiv.children[5].style.display = 'none'
+                
+                
+                
+               
+                /* lisääNappi.forEach ((e) => {
+                    e.addEventListener('click', (e)=> {
+                        e.target.style.color = 'red'
+                        console.log(e.target)
+                    } )
+                }) */
+                   
+                
+                
+                
+                
+                //testi loppuu
             })
             })
                

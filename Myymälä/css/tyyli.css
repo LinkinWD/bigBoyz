@@ -107,7 +107,7 @@ section.products .valikko button:focus {
   display: block;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 10;
   width: 100vw;
   height: 100%;
   -webkit-transform: translateX(100%);
@@ -147,8 +147,8 @@ section.products .valikko button:focus {
 }
 
 .modal .modal-kuva img {
-  margin-top: 30px;
-  width: auto;
+  margin-top: 10px;
+  width: 60%;
 }
 
 /*ostoskori */
@@ -161,7 +161,7 @@ section.products .valikko button:focus {
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
   background: rgba(182, 193, 151, 0.5);
-  z-index: 2;
+  z-index: 20;
   visibility: hidden;
 }
 
@@ -172,7 +172,7 @@ section.products .valikko button:focus {
   width: 100%;
   height: 100%;
   overflow: scroll;
-  z-index: 3;
+  z-index: 30;
   background: #8a9b68;
   padding: 1.5rem;
   -webkit-transition: 0.5s all;
