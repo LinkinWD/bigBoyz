@@ -124,6 +124,19 @@ section.products {
 			background: $dark-green;
 			color: $dark-brown;
 		}
+		h3 {
+			font-size: 2em;
+		}
+		h3:nth-child(1) {
+			font-weight: 600;
+		}
+		h5 {
+			font-size: 2em;
+		}
+		p {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
 	}
 	.modal-kuva {
 		img {
@@ -251,5 +264,15 @@ footer {
 	p {
 		text-align: left;
 		font-size: clamp(1rem, 2.5vw, 1.5rem);
+	}
+}
+@media screen and (min-width: 1200px) {
+	.modal {
+		.modal-kuva {
+			img {
+				align-items: center;
+				width: 40%;
+			}
+		}
 	}
 }
